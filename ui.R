@@ -36,15 +36,12 @@ shinyUI(fluidPage(
          h2("Adjust the parameters on the left and press calculate to view the results"),
          p(" "),
          strong("If you use this site, please reference the following:"),
-         a(href="https://www.cambridge.org/core/journals/twin-research-and-human-genetics/article/power-of-the-classical-twin-design-revisited/A93686184D110CB45ECD579652F03790", 
-                "Twin Research and Human Genetics papers : Visscher P.M. (2004). Power of 
-                 the classical twin design revisited. Twin Research 7, 505-512"),
-          strong("and"),
-          a(href="https://www.cambridge.org/core/journals/twin-research-and-human-genetics/article/power-of-the-classical-twin-design-revisited-ii-detection-of-common-environmental-variance/CFD09D4F9B0948F11075E6E7AFA80D3E",      
-          "Visscher P.M., Gordon S., Neale M.C. (2008). Power of the classical 
-                 twin design revisited: II Detection of Common Environmental Variance. 
+         a("Visscher P.M. (2004). 'Power of 
+                 the classical twin design revisited'. Twin Research 7, 505-512 and     
+            Visscher P.M., Gordon S., Neale M.C. (2008) and 'Power of the classical 
+                 twin design revisited: II Detection of Common Environmental Variance'. 
                  Twin Research and Human Genetics 11, 48-54."),
-          p(" "),
+         p(" "),
          p("Please send suggestions, comments to Peter Visscher or if you are having
             difficulties with the application please contact Luke Lloyd-Jones at
             l.lloydjones@uq.edu.au. This application was prepared by Matthew Robinson, Luke Lloyd-Jones
