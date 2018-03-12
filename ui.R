@@ -36,11 +36,10 @@ shinyUI(fluidPage(
          h2("Adjust the parameters on the left and press calculate to view the results"),
          p(" "),
          strong("If you use this site, please reference the following:"),
-         a("Visscher P.M. (2004). 'Power of 
-                 the classical twin design revisited'. Twin Research 7, 505-512 and     
-            Visscher P.M., Gordon S., Neale M.C. (2008) and 'Power of the classical 
-                 twin design revisited: II Detection of Common Environmental Variance'. 
-                 Twin Research and Human Genetics 11, 48-54."),
+         a("Visscher P.M. (2004). 'Power of the classical twin design revisited'. 
+           Twin Research 7, 505-512 and Visscher P.M., Gordon S., Neale M.C. (2008) 
+           and 'Power of the classical twin design revisited: II Detection of Common 
+           Environmental Variance'. Twin Research and Human Genetics 11, 48-54."),
          p(" "),
          p("Please send suggestions, comments to Peter Visscher or if you are having
             difficulties with the application please contact Luke Lloyd-Jones at

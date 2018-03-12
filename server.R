@@ -146,7 +146,7 @@ shinyServer(function(input, output){
     # --------------------------------------
      
     output$view <- renderTable({
-      gts  <- c("Central chi-squared threshold 1/2 Chi(1)", 
+    gts  <- c("Central chi-squared threshold 1/2 Chi(1)", 
               "Required NCP for ML test (1-sided)", 
               " ",
               "ML: ACE vs. CE model",
@@ -165,12 +165,12 @@ shinyServer(function(input, output){
               "Number of pairs to detect C for given pmz",
               "Best MZ ratio",
               "Minimum sample size")
-      vals <- c(round(thres, 4),
-                round(xncp_ml, 4),
-                " ",
-                " ",
-                round(x_detA, 4),
-                round(powerA, 4),
+    vals <- c(round(thres, 4),
+              round(xncp_ml, 4),
+              " ",
+              " ",
+              round(x_detA, 4),
+              round(powerA, 4),
                 round(n_a_ml),
                 round(p_a_ml, 4),
                 n_a_opt_ml,
@@ -181,7 +181,7 @@ shinyServer(function(input, output){
                 round(results.input[4], 4),
                 round(results.input[5], 4),
                 round(power_C, 4),
-                round(results.input[6]),
+                round(results.input[6], 4),
                 out1[1],
                 out1[6])
       df.1  <- data.frame(gts, vals)
