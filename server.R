@@ -90,7 +90,7 @@ shinyServer(function(input, output){
               (1 - pmz) * (log(f_eb_dz) + log(f_ew_dz)) + 2
     xncp_ae = s1.min$fae - x_ace
     n_ae    = 1 + round((xncp_ml / xncp_ae))
-    results.input <- (c(p, s1.min$Var2, s1.min$Var1, s1.min$fae, xncp_ae, n_ae))    
+    results.input <- c(pmz, s1.min$Var2, s1.min$Var1, s1.min$fae, xncp_ae, n_ae)    
     xncp_C  = (ndz + nmz) * xncp_ae
     power_C = pchisq(thres, 1, ncp = xncp_C, lower.tail = FALSE) 
     # --------------------------------------
