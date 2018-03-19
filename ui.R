@@ -1,7 +1,7 @@
 library(shiny)
 library(fpow)
 shinyUI(fluidPage(
-  titlePanel("Twin power calculator"),
+  titlePanel(h1("Twin power calculator")),
   
   sidebarLayout(
     sidebarPanel(
@@ -29,23 +29,43 @@ shinyUI(fluidPage(
       actionButton("goButton", "Calculate!")
       ),
     mainPanel(
-         h2("This Shiny app provides automated power analysis for 
+         h1("This Shiny application provides automated power analysis for 
              the detection of additive genetic (A) and common environmental 
              (C) variance components of a quantitative trait in the 
              classical twin design. "),
-         h2("Adjust the parameters on the left and press calculate to view the results"),
-         p(" "),
-         strong("If you use this site, please reference the following:"),
+         br(),
+         h2("Adjust the parameters on the left and press calculate to view the results"), 
+         br(),
+      htmlOutput("text1"),
+      h2("Results"),
+      tableOutput("view1"),
+      fluidRow(column(width = 5,
+                   strong("ACE vs. CE model"),
+                   tableOutput("view2")),
+            column(width = 5,
+                   strong("ACE vs. AE model"),
+                   tableOutput('view3'))
+       ),
+       br(),
+         br(),
+         br(),
+         br(), 
+       strong("Definitions"),
+       p("NCP: Noncentrality parameter, 
+          ML:  Maximum likelihood, 
+          E:   Environmental variance component,
+          MZ:  Monozygotic,
+          DZ:  Dizygotic"),
+       strong("If you use this site, please reference the following:"),
          a("Visscher P.M. (2004). 'Power of the classical twin design revisited'. 
            Twin Research 7, 505-512 and Visscher P.M., Gordon S., Neale M.C. (2008) 
            and 'Power of the classical twin design revisited: II Detection of Common 
            Environmental Variance'. Twin Research and Human Genetics 11, 48-54."),
-         p(" "),
-         p("Please send suggestions, comments to Peter Visscher or if you are having
+       p(" "),
+       p(" "), 
+       p("Please send suggestions or comments to Peter Visscher or if you are having
             difficulties with the application please contact Luke Lloyd-Jones at
-            l.lloydjones@uq.edu.au. This application was prepared by Matthew Robinson, Luke Lloyd-Jones
-            and Peter Visscher."),  
-      htmlOutput("text1"),
-      tableOutput("view")
+            l.lloydjones@uq.edu.au. This application was prepared by Matthew Robinson,
+            Luke Lloyd-Jones and Peter Visscher.")
   ))
   ))

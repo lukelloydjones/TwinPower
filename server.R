@@ -2,6 +2,14 @@ require(shiny)
 require(fpow)
 
 shinyServer(function(input, output){ 
+	
+	values <- reactiveValues(default = 0)
+    
+    observeEvent(input$goButton,{
+           values$default <- input$goButton
+      })
+
+	
     getVals <- eventReactive(input$goButton, {
 
     nmz = input$nmz
@@ -144,57 +152,113 @@ shinyServer(function(input, output){
     incProgress(1/8, detail = paste("Outputting results"))
     Sys.sleep(0.4)
     # --------------------------------------
-     
-    output$view <- renderTable({
-    gts  <- c("Central chi-squared threshold 1/2 Chi(1)", 
-              "Required NCP for ML test (1-sided)", 
-              " ",
-              "ML: ACE vs. CE model",
-              "ML: NCP per pair for given pmz",
-              "Power to detect A given input parameters",
-              "Number of pairs to detect A for given pmz",
-              "ML: Optimum proportion of MZ",
-              "Optimal number of pairs",
-              " ",
-              "ML: ACE vs. AE model",
-              "A",
-              "E",
-              "-2ML(AE)",
-              "LRT",
-              "Power to detect C given input parameters",
-              "Number of pairs to detect C for given pmz",
-              "Best MZ ratio",
-              "Minimum sample size")
-    vals <- c(round(thres, 4),
-              round(xncp_ml, 4),
-              " ",
-              " ",
-              round(x_detA, 4),
-              round(powerA, 4),
-                round(n_a_ml),
-                round(p_a_ml, 4),
-                n_a_opt_ml,
-                " ",
-                " ",
-                round(results.input[2], 4),
-                round(results.input[3], 4),
-                round(results.input[4], 4),
-                round(results.input[5], 4),
-                round(power_C, 4),
-                round(results.input[6], 4),
-                out1[1],
-                out1[6])
+    # -------------------
+    # First results table
+    # ------------------- 
+    output$view1 <- renderTable({
+      gts  <- c("Central chi-squared threshold 1/2 Chi(1)", 
+                "Required NCP for ML test (1-sided)",
+                "Proportion of MZ twin pairs as defined by user")
+      vals <- c(round(thres, 3),
+                round(xncp_ml, 3),
+                round(pmz, 3))
       df.1  <- data.frame(gts, vals)
       colnames(df.1) <- c(" ", " ")
       df.1
-      }, include.rownames = FALSE)
+    }, digits = 3, include.rownames = FALSE)
+    # -------------------
+    # Second results table
+    # -------------------
+    output$view2 <- renderTable({
+      gts  <- c("Power to detect A given input parameters",
+                "Number of pairs to detect A for given ratio of MZ pairs",
+                "Optimum proportion of MZ pairs",
+                "Optimum number of pairs to achieve required power")
+      vals <- c(round(powerA, 3),
+                format(n_a_ml, scientific = FALSE),
+                round(p_a_ml, 3),
+                format(n_a_opt_ml, scientific = FALSE))
+      df.1  <- data.frame(gts, vals)
+      colnames(df.1) <- c(" ", " ")
+      df.1
+    }, digits = 3, include.rownames = FALSE)
+    # -------------------
+    # Third results table
+    # -------------------
+    output$view3 <- renderTable({
+    gts  <- c("Power to detect C given input parameters",
+              "Number of pairs to detect C for given MZ ratio",
+              "Optimum MZ ratio to achieve required power",
+              "Minimum sample size to achieve required power")
+    vals <- c(round(power_C, 3),
+              format(results.input[6], scientific = FALSE),
+              out1[1],
+              format(out1[6], scientific = FALSE))
+      df.1  <- data.frame(gts, vals)
+      colnames(df.1) <- c(" ", " ")
+      df.1
+      }, digits = 3, include.rownames = FALSE)
       HTML("")
   })
   })
   
-
-   output$text1 <- renderUI({
-  	   getVals()
+  getVals2 <- eventReactive(1, {
+    # -------------------
+    # First results table
+    # ------------------- 
+    output$view1 <- renderTable({
+      gts  <- c("Central chi-squared threshold 1/2 Chi(1)", 
+                "Required NCP for ML test (1-sided)",
+                "Proportion of MZ twin pairs as defined by user")
+      vals <- c(2.706,
+                6.182,
+                0.50)
+      df.1  <- data.frame(gts, vals)
+      colnames(df.1) <- c(" ", " ")
+      df.1
+    }, digits = 3, include.rownames = FALSE)
+    # -------------------
+    # Second results table
+    # -------------------
+    output$view2 <- renderTable({
+      gts  <- c("Power to detect A given input parameters",
+                "Number of pairs to detect A for given ratio of MZ pairs",
+                "Optimum proportion of MZ pairs",
+                "Optimum number of pairs to achieve required power")
+      vals <- c(0.659,
+                format(60, scientific = FALSE),
+                0.572,
+                as.integer(57))
+      df.1  <- data.frame(gts, vals)
+      colnames(df.1) <- c(" ", " ")
+      df.1
+    }, digits = 3, include.rownames = FALSE)
+    # -------------------
+    # Third results table
+    # -------------------
+    output$view3 <- renderTable({
+    gts  <- c("Power to detect C given input parameters",
+              "Number of pairs to detect C for given MZ ratio",
+              "Optimum MZ ratio to achieve required power",
+              "Minimum sample size to achieve required power")
+    vals <- c(0.157,
+              format(725, scientific = FALSE),
+              0.140,
+              as.integer(488))
+      df.1  <- data.frame(gts, vals)
+      colnames(df.1) <- c(" ", " ")
+      df.1
+      }, digits = 3, include.rownames = FALSE)
+      HTML("")
+  })
+  
+  output$text1 <- renderUI({
+   	 if(values$default == 0)
+     {
+     	getVals2()
+     } else {
+  	    getVals()
+  	 }
    })
    
  
