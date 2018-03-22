@@ -1,7 +1,7 @@
 library(shiny)
 library(fpow)
 shinyUI(fluidPage(
-  titlePanel(h1("Twin power calculator")),
+  titlePanel("Twin power calculator"),
   
   sidebarLayout(
     sidebarPanel(
@@ -56,8 +56,8 @@ shinyUI(fluidPage(
           E:   Environmental variance component,
           MZ:  Monozygotic,
           DZ:  Dizygotic"),
-       strong("If you use this site, please reference the following:"),
-         a("Visscher P.M. (2004). 'Power of the classical twin design revisited'. 
+       strong("If you use this site, please reference the following:
+              Visscher P.M. (2004). 'Power of the classical twin design revisited'. 
            Twin Research 7, 505-512 and Visscher P.M., Gordon S., Neale M.C. (2008) 
            and 'Power of the classical twin design revisited: II Detection of Common 
            Environmental Variance'. Twin Research and Human Genetics 11, 48-54."),
